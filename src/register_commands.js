@@ -27,12 +27,33 @@ export const commands = [
         name: 'leave',
         description: '⚽️ Quitter la partie de baby-foot.'
     },
+    {
+        name: 'duel',
+        description: 'Provoque quelqu\'un en duel !',
+        options: [
+            {
+                name: 'cible',
+                description: 'Le nom de la personne que tu souhaites défier.',
+                type: ApplicationCommandOptionType.User,
+                required: true
+            },
+        ]
+    },
+    {
+        name: 'accept',
+        description: 'Pour accepter le duel',
+        required: false
+    },
+    {
+        name: 'refuse',
+        description: 'Pour refuser le duel',
+        required: false
+    },
     // ECOUTEURS
     {
         name: 'headset',
         description: '🎧 Vous déplace dans le rôle 🎧Écouteurs. Si vous êtes déjà dans ce rôle, vous en retire.'
-    }
-
+    },
 ]
 
 const rest = new REST({ version: '10' }).setToken(process.env.TOKEN);
