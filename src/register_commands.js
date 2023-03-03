@@ -1,7 +1,7 @@
 // require('dotenv').config();
 import dotenv  from "dotenv"
 dotenv.config()
-import { REST, Routes } from 'discord.js';
+import { REST, Routes, ApplicationCommandOptionType } from 'discord.js';
 // const { REST, Routes } = require('discord.js')
 
 export const commands = [
@@ -52,7 +52,7 @@ export const commands = [
     // ECOUTEURS
     {
         name: 'headset',
-        description: '🎧 Vous déplace dans le rôle 🎧Écouteurs. Si vous êtes déjà dans ce rôle, vous en retire.'
+        description: '🎧 Vous déplace dans le rôle Écouteurs. Si vous êtes déjà dans ce rôle, vous en retire.'
     },
 ]
 
