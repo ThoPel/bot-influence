@@ -142,12 +142,12 @@ client.on('interactionCreate', (interraction) => {
 
     // ECOUTEURS
     if(interraction.commandName === 'headset') {
-        if (!interraction.member.roles.cache.has('1080077996834160680')) {
-            interraction.member.roles.add(['1080077996834160680'], `${interraction.user.username} a mis ses écouteurs.`);
+        if (!interraction.member.roles.cache.has('1079837778440896653')) {
+            interraction.member.roles.add(['1079837778440896653'], `${interraction.user.username} a mis ses écouteurs.`);
             interraction.reply({content: '📢 J\'indique aux autres que tu as mis tes écouteurs ! ', ephemeral: true})
             // console.log(interraction);
         } else {
-            interraction.member.roles.remove(['1080077996834160680'], `${interraction.user.username} a retiré ses écouteurs.`);
+            interraction.member.roles.remove(['1079837778440896653'], `${interraction.user.username} a retiré ses écouteurs.`);
             interraction.reply({content: '📢 J\'indique aux autres que tu as retiré tes écouteurs !', ephemeral: true});
         }
     }
