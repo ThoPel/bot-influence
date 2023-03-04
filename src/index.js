@@ -88,10 +88,12 @@ client.on('interactionCreate', (interraction) => {
     }
 
     if (interraction.commandName === 'leave') {
-        const index = players.indexOf(elem => elem.Discriminator == interraction.member.Discriminator);
-
+        const index = players.indexOf(interraction.member);
         if (index == -1) {
             interraction.reply({ content: `🤕 Tu ne peux pas quitter une partie dans laquelle tu n'es pas. Rejoins-en une puis quitte la ensuite.`, ephemeral: true })
+        } else if (players.length == 1) {
+            interraction.reply(`😕 ${interraction.member} se dégonfle finalement, il n'y a plus personne dans la partie... (/new pour en créer une nouvelle)`)
+            players = [];
         } else {
             interraction.reply(`😕 ${interraction.member} se dégonfle finalement, une place se libère... \nJoueurs : ${players} (/join pour rejoindre)`)
             players.splice(index, 1);
