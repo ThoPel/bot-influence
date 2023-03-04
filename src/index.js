@@ -36,7 +36,7 @@ client.on('interactionCreate', (interraction) => {
     if (interraction.commandName === 'help') {
         let commandsList = '';
         commands.forEach((element, index) => commandsList += '**/' + element.name + '** : ' + element.description + (index != commands.length - 1 ? '\n' : ''));
-        interraction.reply({ content: `👋 Hello ! Je suis BOT INFLUENCE, le bot officiel de DEV INFLUENCE.\n\nJe sais faire plein de choses, voici la liste de ce que je sais faire :\n${commandsList}\n\nSi tu as des questions, demandes à tes collègues 😉`, ephemeral: true })
+        interraction.reply({ content: `👋 Hello ! Je suis BOT INFLUENCE, le bot officiel de DEV INFLUENCE.\n\nJe sais faire plein de choses, voici la liste de tout ce que je sais faire :\n${commandsList}\n\nSi tu as des questions, demandes à tes collègues 😉`, ephemeral: true })
     }
 
     // BABY-FOOT
@@ -121,7 +121,7 @@ client.on('interactionCreate', (interraction) => {
         if (result) {
             if (result.sender.user.id != interraction.member.id) {
                 const shuffledSides = sides.sort((a, b) => 0.5 - Math.random());
-                interraction.reply(`:crossed_swords: ${interraction.member} accepte le duel contre ${result.sender} ! \nQue le/la meilleur(e) gagne !\n${shuffledSides[0]} ${interraction.member}\n${shuffledSides[1]} ${result.sender}`)
+                interraction.reply(`✅ ${interraction.member} accepte le duel contre ${result.sender} ! \nQue le/la meilleur(e) gagne !\n${shuffledSides[0]} ${interraction.member}\n${shuffledSides[1]} ${result.sender}`)
                 const index = duels.indexOf(elem => elem.target.Discriminator == interraction.member.Discriminator);
                 duels.splice(index, 1);
 
@@ -138,7 +138,7 @@ client.on('interactionCreate', (interraction) => {
         })
         if (result) {
             if (result.sender.user.id != interraction.member.id) {
-                interraction.reply(`:crossed_swords: ${interraction.member} refuse le duel contre ${result.sender} !\nIl a sûrement pris peur...`)
+                interraction.reply(`❌ ${interraction.member} refuse le duel contre ${result.sender} !\nIl/Elle a peut-être une peur irrationnelle des petites balles en plastique et des joueurs en bois qui le regardent avec leurs yeux noirs effrayants ! Ou peut-être qu'il/elle a peur de perdre et devoir faire la vaisselle pour le reste de la semaine...`)
                 const index = duels.indexOf(elem => elem.target.Discriminator == interraction.member.Discriminator);
                 duels.splice(index, 1);
 
@@ -154,10 +154,10 @@ client.on('interactionCreate', (interraction) => {
     if (interraction.commandName === 'headset') {
         if (!interraction.member.roles.cache.has('1079837778440896653')) {
             interraction.member.roles.add(['1079837778440896653'], `${interraction.user.username} a mis ses écouteurs.`);
-            interraction.reply({ content: '📢 J\'indique aux autres que tu as mis tes écouteurs ! ', ephemeral: true })
+            interraction.reply({ content: '🔈 J\'indique aux autres que tu as mis tes écouteurs ! ', ephemeral: true })
         } else {
             interraction.member.roles.remove(['1079837778440896653'], `${interraction.user.username} a retiré ses écouteurs.`);
-            interraction.reply({ content: '📢 J\'indique aux autres que tu as retiré tes écouteurs !', ephemeral: true });
+            interraction.reply({ content: '🔇 J\'indique aux autres que tu as retiré tes écouteurs !', ephemeral: true });
         }
     }
 });
