@@ -8,7 +8,7 @@ export const commands = [
     // AIDE
     {
         name: 'help',
-        description: '🤖 Afficher toutes les fonctionnalités du BOT INFLUENCE.'
+        description: ':information_source: Afficher toutes les fonctionnalités du BOT INFLUENCE.'
     },
     // BABY-FOOT
     {
@@ -29,7 +29,7 @@ export const commands = [
     },
     {
         name: 'duel',
-        description: 'Provoque quelqu\'un en duel !',
+        description: '⚽️ Provoquer quelqu\'un en duel !',
         options: [
             {
                 name: 'cible',
@@ -41,12 +41,12 @@ export const commands = [
     },
     {
         name: 'accept',
-        description: 'Pour accepter le duel',
+        description: '⚽️ Accepter le duel',
         required: false
     },
     {
         name: 'refuse',
-        description: 'Pour refuser le duel',
+        description: '⚽️ Refuser le duel',
         required: false
     },
     // ECOUTEURS
