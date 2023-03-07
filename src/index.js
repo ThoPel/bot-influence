@@ -24,7 +24,7 @@ client.on('ready', (c) => {
 // BABY-FOOT VARS
 let players = [];
 const sides = ['🔴', '🔵']
-const shuffledSides = sides.sort((a, b) => 0.5 - Math.random());
+const shuffledSides = sides.sort(() => 0.5 - Math.random());
 let gameOn = false;
 
 const duels = []
@@ -36,7 +36,7 @@ client.on('interactionCreate', (interraction) => {
     if (interraction.commandName === 'help') {
         let commandsList = '';
         commands.forEach((element, index) => commandsList += '**/' + element.name + '** : ' + element.description + (index != commands.length - 1 ? '\n' : ''));
-        interraction.reply({ content: `👋 Hello ! Je suis BOT INFLUENCE, le bot officiel de DEV INFLUENCE.\n\nJe sais faire plein de choses, voici la liste de tout ce que je sais faire :\n${commandsList}\n\nSi tu as des questions, demandes à tes collègues 😉`, ephemeral: true })
+        interraction.reply({ content: `👋 Hello ! Je suis BOT INFLUENCE, le bot officiel de DEV INFLUENCE.\n\nJe sais faire plein de choses, voici la liste de tout ce que je sais faire :\n\n${commandsList}\n\nSi tu as des questions, demandes à tes collègues 😉`, ephemeral: true })
     }
 
     // BABY-FOOT
@@ -72,7 +72,7 @@ client.on('interactionCreate', (interraction) => {
     }
 
     if (interraction.commandName === 'start') {
-        const shuffledPlayers = players.sort((a, b) => 0.5 - Math.random());
+        const shuffledPlayers = players.sort(() => 0.5 - Math.random());
         if (players.length == 1) {
             interraction.reply({ content: `🤕 Désolé, tu ne peux pas lancer une partie si tu es tout seul, même si tu as un talent exceptionnel pour jouer avec tes deux pieds et tes deux mains en même temps !`, ephemeral: true })
         } else if (players.length == 2) {
@@ -122,13 +122,13 @@ client.on('interactionCreate', (interraction) => {
         })
         if (result) {
             if (result.sender.user.id != interraction.member.id) {
-                const shuffledSides = sides.sort((a, b) => 0.5 - Math.random());
+                const shuffledSides = sides.sort(() => 0.5 - Math.random());
                 interraction.reply(`✅ ${interraction.member} accepte le duel contre ${result.sender} ! \nQue le/la meilleur(e) gagne !\n${shuffledSides[0]} ${interraction.member}\n${shuffledSides[1]} ${result.sender}`)
                 const index = duels.indexOf(elem => elem.target.Discriminator == interraction.member.Discriminator);
                 duels.splice(index, 1);
 
             } else {
-                interraction.reply({ content: `🤕 Personne ne t'a provoqué en duel, peut-être ont-ils peur de toi ?`, ephemeral: true })
+                interraction.reply({ content: `🤕 Tu ne peux pas accepter un duel que tu as provoqué, laisse ton adversaire choisir...`, ephemeral: true })
             }
         } else {
             interraction.reply({ content: `🤕 Personne ne t'a provoqué en duel, peut-être ont-ils peur de toi ?`, ephemeral: true })
@@ -145,7 +145,7 @@ client.on('interactionCreate', (interraction) => {
                 duels.splice(index, 1);
 
             } else {
-                interraction.reply({ content: `🤕 Personne ne t'a provoqué en duel, peut-être ont-ils peur de toi ?`, ephemeral: true })
+                interraction.reply({ content: `🤕 Tu ne peux pas refuser un duel que tu as provoqué, laisse ton adversaire choisir...`, ephemeral: true })
             }
         } else {
             interraction.reply({ content: `🤕 Personne ne t'a provoqué en duel, peut-être ont-ils peur de toi ?`, ephemeral: true })
@@ -163,6 +163,16 @@ client.on('interactionCreate', (interraction) => {
             interraction.member.roles.add(role);
             interraction.reply({ content: '🔈 J\'indique aux autres que tu as mis tes écouteurs ! ', ephemeral: true })
         }
+    }
+
+    // GAMELLE
+    if (interraction.commandName === 'gamelle') {
+       const gamelle = Math.random();
+       if(gamelle > 0.5) {
+        interraction.reply({ content: `🍲 ${interraction.member}, manger ta gamelle au bureau est généralement plus économique, plus sain et plus pratique que de manger à l'extérieur !` })
+       } else {
+        interraction.reply({ content: `🍔 ${interraction.member}, manger à l'extérieur peut offrir une pause relaxante et agréable dans la routine quotidienne et permettre de découvrir de nouvelles saveurs et cultures culinaires !` })
+       }
     }
 });
 

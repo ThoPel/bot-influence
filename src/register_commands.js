@@ -8,7 +8,7 @@ export const commands = [
     // AIDE
     {
         name: 'help',
-        description: ':information_source: Afficher toutes les fonctionnalités du BOT INFLUENCE.'
+        description: '👋 Afficher toutes les fonctionnalités du BOT INFLUENCE.'
     },
     // BABY-FOOT
     {
@@ -41,18 +41,23 @@ export const commands = [
     },
     {
         name: 'accept',
-        description: '⚽️ Accepter le duel',
+        description: '⚽️ Accepter le duel.',
         required: false
     },
     {
         name: 'refuse',
-        description: '⚽️ Refuser le duel',
+        description: '⚽️ Refuser le duel.',
         required: false
     },
     // ECOUTEURS
     {
         name: 'headset',
-        description: '🎧 Vous déplace dans le rôle Écouteurs. Si vous êtes déjà dans ce rôle, vous en retire.'
+        description: '🎧 Avertir tes collègues que tu as mis et retiré tes écouteurs.'
+    },
+    // GAMELLE
+    {
+        name: 'gamelle',
+        description: '🍔/🍲 Si tu hésites entre manger ta gamelle ou manger ailleurs.'
     },
 ]
 
