@@ -49,6 +49,19 @@ export const commands = [
         description: '⚽️ Refuser le duel.',
         required: false
     },
+    //VOTE
+    {
+        name: 'vote',
+        description: 'Créer un vote.',
+        options: [
+            {
+                name: 'question',
+                description: 'La question à poser.',
+                type: ApplicationCommandOptionType.String,
+                required: true
+            },
+        ]
+    },
     // ECOUTEURS
     {
         name: 'headset',
