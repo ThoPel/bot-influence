@@ -1,7 +1,7 @@
 // require('dotenv').config();
 import dotenv from "dotenv"
 import { commands } from './register_commands.js';
-import { Client, GatewayIntentBits } from 'discord.js';
+import { Client, GatewayIntentBits, MessageEmbed } from 'discord.js';
 
 dotenv.config()
 
@@ -165,6 +165,24 @@ client.on('interactionCreate', (interraction) => {
         }
     }
 
+    //VOTE
+    if (interraction.commandName === 'vote') {
+        const question = interraction.options.getString('question'); // Extrait la question en supprimant le préfixe et la commande
+        const embed = new MessageEmbed()
+        .setColor('#0099ff')
+        .setTitle('Vote')
+        .setDescription(question)
+        .setFooter('Votez en réagissant avec 👎, 👍 ou 🤷‍♂️');
+
+        interraction.reply(embed)
+        .then(msg => {
+            msg.react('👎');
+            msg.react('👍');
+            msg.react('🤷‍♂️');
+        })
+        .catch(console.error);
+    }
+
     // GAMELLE
     if (interraction.commandName === 'gamelle') {
        const gamelle = Math.random();
@@ -175,6 +193,25 @@ client.on('interactionCreate', (interraction) => {
        }
     }
 });
+
+client.on('messageReactionAdd', (reaction, user) => {
+    if (user.bot) return; // Ignore les réactions des bots
+  
+    const message = reaction.message;
+    const thumbsUp = message.reactions.cache.get('👍');
+    const thumbsDown = message.reactions.cache.get('👎');
+    const shrug = message.reactions.cache.get('🤷‍♂️');
+  
+    if (reaction.emoji.name === '👍') {
+      thumbsUp.users.remove(user.id); // Empêche les utilisateurs de voter plusieurs fois
+    }
+    else if (reaction.emoji.name === '👎') {
+      thumbsDown.users.remove(user.id);
+    }
+    else if (reaction.emoji.name === '🤷‍♂️') {
+      shrug.users.remove(user.id);
+    }
+  });
 
 
 
