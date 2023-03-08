@@ -1,7 +1,7 @@
 // require('dotenv').config();
 import dotenv from "dotenv"
 import { commands } from './register_commands.js';
-import { Client, GatewayIntentBits, MessageEmbed } from 'discord.js';
+import { Client, GatewayIntentBits, EmbedBuilder } from 'discord.js';
 
 dotenv.config()
 
@@ -168,7 +168,7 @@ client.on('interactionCreate', (interraction) => {
     //VOTE
     if (interraction.commandName === 'vote') {
         const question = interraction.options.getString('question'); // Extrait la question en supprimant le préfixe et la commande
-        const embed = new MessageEmbed()
+        const embed = new EmbedBuilder()
         .setColor('#0099ff')
         .setTitle('Vote')
         .setDescription(question)
