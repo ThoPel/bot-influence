@@ -47,7 +47,7 @@ client.on('interactionCreate', (interraction) => {
             interraction.reply(`⚽️ Qui est chaud pour faire un match ? \nJoueurs : ${players} (/join pour rejoindre)`)
             gameOn = !gameOn;
         } else {
-            interraction.reply({ content: `🤕 Oups, une partie est déjà en cours de préparation, rejoins-la (/join) et montre leurs de quoi tu es capable !`, ephemeral: true })
+            interraction.reply({ content: `😕 Oups, une partie est déjà en cours de préparation, rejoins-la (/join) et montre leurs de quoi tu es capable !`, ephemeral: true })
 
         }
     }
@@ -56,9 +56,9 @@ client.on('interactionCreate', (interraction) => {
         const index = players.indexOf(interraction.member);
 
         if (players.length == 0) {
-            interraction.reply({ content: `🤕 Il n'y a aucune partie en cours, crées-en une avec /new !`, ephemeral: true })
+            interraction.reply({ content: `😕 Il n'y a aucune partie en cours, crées-en une avec /new !`, ephemeral: true })
         } else if (index != -1) {
-            interraction.reply({ content: `🤕 Tu es déjà compté dans les participant de la partie !`, ephemeral: true })
+            interraction.reply({ content: `😕 Tu es déjà compté dans les participants de la partie !`, ephemeral: true })
         } else if (players.length == 3) {
             players.push(interraction.member);
             const shuffledPlayers = players.sort((a, b) => 0.5 - Math.random());
@@ -66,7 +66,7 @@ client.on('interactionCreate', (interraction) => {
             players = [];
         } else {
             players.push(interraction.member);
-            interraction.reply(`🔥 ${interraction.member} est chaud ! \nJoueurs : ${players} (/join pour rejoindre)`)
+            interraction.reply(`🔥 ${interraction.member} est partant(e) ! \nJoueurs : ${players} (/join pour rejoindre)`)
         }
 
     }
@@ -74,7 +74,7 @@ client.on('interactionCreate', (interraction) => {
     if (interraction.commandName === 'start') {
         const shuffledPlayers = players.sort(() => 0.5 - Math.random());
         if (players.length == 1) {
-            interraction.reply({ content: `🤕 Désolé, tu ne peux pas lancer une partie si tu es tout seul, même si tu as un talent exceptionnel pour jouer avec tes deux pieds et tes deux mains en même temps !`, ephemeral: true })
+            interraction.reply({ content: `😕 Désolé, tu ne peux pas lancer une partie si tu es tout(e) seul(e), même si tu as un talent exceptionnel pour jouer avec tes deux pieds et tes deux mains en même temps !`, ephemeral: true })
         } else if (players.length == 2) {
             interraction.reply(`👍 On y va ! \nVoici les challengers : \n${shuffledSides[0]} ${shuffledPlayers[0]}\n${shuffledSides[1]} ${shuffledPlayers[1]}`)
             players = [];
@@ -90,7 +90,7 @@ client.on('interactionCreate', (interraction) => {
     if (interraction.commandName === 'leave') {
         const index = players.indexOf(interraction.member);
         if (index == -1) {
-            interraction.reply({ content: `🤕 Tu ne peux pas quitter une partie dans laquelle tu n'es pas. Rejoins-en une puis quitte la ensuite.`, ephemeral: true })
+            interraction.reply({ content: `😕 Tu ne peux pas quitter une partie dans laquelle tu n'es pas. Rejoins-en une puis quitte la ensuite.`, ephemeral: true })
         } else if (players.length == 1) {
             interraction.reply(`😕 ${interraction.member} se dégonfle finalement, il n'y a plus personne dans la partie... (/new pour en créer une nouvelle)`)
             players = [];
@@ -104,14 +104,16 @@ client.on('interactionCreate', (interraction) => {
         const isInDuelSender = duels.find(elem => elem.target.Discriminator == interraction.member.Discriminator || elem.sender.Discriminator == interraction.member.Discriminator);
         const isInDuelTarget = duels.find(elem => elem.target.Discriminator == target.Discriminator || elem.sender.Discriminator == target.Discriminator);
         if (target.id == interraction.member.id) {
-            interraction.reply({ content: `🤕 Désolé, tu ne peux pas te provoquer en duel tout seul, même si tu as un talent exceptionnel pour jouer avec tes deux pieds et tes deux mains en même temps !`, ephemeral: true })
-        } else if (isInDuelSender || isInDuelTarget) {
-            interraction.reply({ content: `🤕 Toi ou ta cible êtes déjà provoqué en duel...`, ephemeral: true })
+            interraction.reply({ content: `😕 Désolé, tu ne peux pas te provoquer en duel tout(e) seul(e), même si tu as un talent exceptionnel pour jouer avec tes deux pieds et tes deux mains en même temps !`, ephemeral: true })
+        } else if (isInDuelTarget) {
+            interraction.reply({ content: `😕 Ta cible est déjà provoquée en duel...`, ephemeral: true })
+        } else if (isInDuelSender) {
+            interraction.reply({ content: `😕 Quelqu'un t'a déjà provoqué en duel...`, ephemeral: true })
         } else if (target.username == 'BOT INFLUENCE') {
-            interraction.reply({ content: `🤕 Je ne suis qu'un bot, je ne peux pas jouer au baby-foot...`, ephemeral: true })
+            interraction.reply({ content: `😕 Je ne suis qu'un bot, je ne peux pas jouer au baby-foot...`, ephemeral: true })
         } else {
             duels.push({ sender: interraction.member, target: target });
-            interraction.reply(`:crossed_swords: ${interraction.member} décide de provoquer ${target} en duel ! Va-t-il accepter ?`)
+            interraction.reply(`:crossed_swords: ${interraction.member} décide de provoquer ${target} en duel ! Va-t-il/elle accepter ?`)
         }
 
 
@@ -128,10 +130,10 @@ client.on('interactionCreate', (interraction) => {
                 duels.splice(index, 1);
 
             } else {
-                interraction.reply({ content: `🤕 Tu ne peux pas accepter un duel que tu as provoqué, laisse ton adversaire choisir...`, ephemeral: true })
+                interraction.reply({ content: `😕 Tu ne peux pas accepter un duel que tu as provoqué, laisse ton adversaire choisir...`, ephemeral: true })
             }
         } else {
-            interraction.reply({ content: `🤕 Personne ne t'a provoqué en duel, peut-être ont-ils peur de toi ?`, ephemeral: true })
+            interraction.reply({ content: `😕 Personne ne t'a provoqué en duel, peut-être ont-ils peur de toi ?`, ephemeral: true })
         }
     }
     if (interraction.commandName === 'refuse') {
@@ -145,10 +147,10 @@ client.on('interactionCreate', (interraction) => {
                 duels.splice(index, 1);
 
             } else {
-                interraction.reply({ content: `🤕 Tu ne peux pas refuser un duel que tu as provoqué, laisse ton adversaire choisir...`, ephemeral: true })
+                interraction.reply({ content: `😕 Tu ne peux pas refuser un duel que tu as provoqué, laisse ton adversaire choisir...`, ephemeral: true })
             }
         } else {
-            interraction.reply({ content: `🤕 Personne ne t'a provoqué en duel, peut-être ont-ils peur de toi ?`, ephemeral: true })
+            interraction.reply({ content: `😕 Personne ne t'a provoqué en duel, peut-être ont-ils peur de toi ?`, ephemeral: true })
         }
     }
 

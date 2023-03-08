@@ -52,7 +52,7 @@ export const commands = [
     //VOTE
     {
         name: 'vote',
-        description: 'Créer un vote.',
+        description: '✋ Créer un vote.',
         options: [
             {
                 name: 'question',
@@ -65,7 +65,7 @@ export const commands = [
     // ECOUTEURS
     {
         name: 'headset',
-        description: '🎧 Avertir tes collègues que tu as mis et retiré tes écouteurs.'
+        description: '🎧 Avertir tes collègues que tu as mis ou retiré tes écouteurs.'
     },
     // GAMELLE
     {
